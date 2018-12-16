@@ -20,6 +20,10 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         final RecyclerView bucketListView = findViewById(R.id.recycler_view_bucket_list);
-        bucketListView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        bucketListView.setLayoutManager(
+                new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+        BucketListAdapter adapter = new BucketListAdapter(null);
+        bucketListView.setAdapter(adapter);
+
     }
 }
