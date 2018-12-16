@@ -5,6 +5,12 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+/**
+ * The entry point of the app.
+ * The only screen of this app is the bucketlist.
+ *
+ * @author Elwin Slokker
+ */
 public class MainActivity extends AppCompatActivity
 {
 
