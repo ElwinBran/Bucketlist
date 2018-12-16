@@ -2,7 +2,11 @@ package com.github.elwinbran.bucketlist;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+
+import java.util.List;
 
 /**
  * The adapter for the bucket list element.
@@ -11,22 +15,32 @@ import android.view.ViewGroup;
  */
 public class BucketListAdapter extends RecyclerView.Adapter<ItemViewHolder>
 {
+
+    final private List<BucketListItem> items;
+
+    public BucketListAdapter(List<BucketListItem> items)
+    {
+        this.items = items;
+    }
+
     @NonNull
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
     {
-        return null;
+        View card = LayoutInflater.from(viewGroup.getContext()).inflate(
+                R.layout.bucket_list_item, viewGroup, false);
+        return new ItemViewHolder(card);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder itemViewHolder, int i)
     {
-
+        itemViewHolder.setItem(this.items.get(i));
     }
 
     @Override
     public int getItemCount()
     {
-        return 0;
+        return items.size();
     }
 }
