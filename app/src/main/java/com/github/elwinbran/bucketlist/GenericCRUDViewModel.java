@@ -17,23 +17,23 @@ public abstract class GenericCRUDViewModel<ModelT> extends ViewModel
      *
      * @return
      */
-    public abstract LiveData<List<ModelT>> getReminders();
+    public abstract LiveData<List<ModelT>> getModels();
 
     /**
      *
-     * @param reminder
+     * @param model
      */
-    public abstract void insert(ModelT reminder);
+    public abstract void insert(ModelT model);
 
     /**
      *
-     * @param reminder
+     * @param model
      */
-    public abstract void update(ModelT reminder);
+    public abstract void update(ModelT model);
 
     /**
      *
-     * @param reminder
+     * @param model
      */
-    public abstract void delete(ModelT reminder);
+    public abstract void delete(ModelT model);
 }
