@@ -13,10 +13,13 @@ public class BucketListItem
 
     final private String description;
 
-    public BucketListItem(@NonNull String title, @NonNull String description)
+    final private Boolean completed;
+
+    public BucketListItem(@NonNull String title, @NonNull String description,  @NonNull Boolean completed)
     {
         this.title = title;
         this.description = description;
+        this.completed = completed;
     }
 
     public String title()
@@ -27,5 +30,10 @@ public class BucketListItem
     public String description()
     {
         return this.description;
+    }
+
+    public Boolean completed()
+    {
+        return this.completed;
     }
 }
