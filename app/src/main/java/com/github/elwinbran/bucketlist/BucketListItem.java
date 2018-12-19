@@ -12,7 +12,7 @@ import android.support.annotation.NonNull;
  *
  * @author Elwin Slokker
  */
-@Entity(tableName = "backlogEntry")
+@Entity(tableName = "bucketListItem")
 public class BucketListItem implements Parcelable
 {
     public final static Parcelable.Creator<BucketListItem> CREATOR =
