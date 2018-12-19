@@ -18,7 +18,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<ItemViewHolder>
 
     final private List<BucketListItem> items;
 
-    public BucketListAdapter(List<BucketListItem> items)
+    public BucketListAdapter(@NonNull List<BucketListItem> items)
     {
         this.items = items;
     }
