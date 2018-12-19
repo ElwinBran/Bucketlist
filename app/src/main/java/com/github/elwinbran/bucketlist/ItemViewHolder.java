@@ -24,7 +24,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
     {
         TextView title = itemView.findViewById(R.id.text_view_item_title);
         TextView description = itemView.findViewById(R.id.text_view_item_description);
-        title.setText(model.title());
-        title.setText(model.description());
+        title.setText(model.getTitle());
+        title.setText(model.getDescription());
     }
 }

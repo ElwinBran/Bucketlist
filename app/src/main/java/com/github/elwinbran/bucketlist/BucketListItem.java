@@ -1,19 +1,53 @@
 package com.github.elwinbran.bucketlist;
 
+import android.arch.persistence.room.ColumnInfo;
+import android.arch.persistence.room.Entity;
+import android.arch.persistence.room.PrimaryKey;
+import android.os.Parcel;
+import android.os.Parcelable;
 import android.support.annotation.NonNull;
 
 /**
- * Represents an item on a bucket list: has a title and a description.
+ * Represents an item on a bucket list: has a getTitle and a getDescription.
  *
  * @author Elwin Slokker
  */
-public class BucketListItem
+@Entity(tableName = "backlogEntry")
+public class BucketListItem implements Parcelable
 {
-    final private String title;
+    public final static Parcelable.Creator<BucketListItem> CREATOR =
+        new Parcelable.Creator<BucketListItem>()
+        {
+            public BucketListItem createFromParcel(Parcel in) {
+                return new BucketListItem(in);
+            }
 
-    final private String description;
+            public BucketListItem[] newArray(int size) {
+                return new BucketListItem[size];
+            }
+        };
 
-    final private Boolean completed;
+    @PrimaryKey
+    @NonNull
+    private String title;
+
+    @ColumnInfo(name = "description")
+    private String description;
+
+    @ColumnInfo(name = "completed")
+    private Boolean completed;
+
+    public BucketListItem()
+    {
+        this.title = "";
+    }
+
+    public BucketListItem(Parcel in)
+    {
+        completed = in.readByte() != 0;
+        description = in.readString();
+        title = in.readString();
+    }
 
     public BucketListItem(@NonNull String title, @NonNull String description,  @NonNull Boolean completed)
     {
@@ -22,18 +56,32 @@ public class BucketListItem
         this.completed = completed;
     }
 
-    public String title()
+    public String getTitle()
     {
         return this.title;
     }
 
-    public String description()
+    public String getDescription()
     {
         return this.description;
     }
 
-    public Boolean completed()
+    public Boolean getCompleted()
     {
         return this.completed;
+    }
+
+    @Override
+    public int describeContents()
+    {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i)
+    {
+        parcel.writeByte((byte) (completed ? 1 : 0));
+        parcel.writeString(this.description);
+        parcel.writeString(this.title);
     }
 }
