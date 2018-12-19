@@ -34,8 +34,6 @@ public class MainActivity extends AppCompatActivity
         final RecyclerView bucketListView = findViewById(R.id.recycler_view_bucket_list);
         bucketListView.setLayoutManager(
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-        BucketListAdapter adapter = new BucketListAdapter(null);
-        bucketListView.setAdapter(adapter);
 
         Executor databaseThread = Executors.newSingleThreadExecutor();
         BucketItemDAO dao = db.bucketItemDAO();
@@ -43,16 +41,21 @@ public class MainActivity extends AppCompatActivity
         GenericRepository<BucketListItem> repository = new BucketListRepository(dao, databaseThread);
         GenericCRUDViewModel<BucketListItem> viewModel =
                 new MainViewModel(repository, repository.getAllPersistables());
+        final ResetList dynamicItems = new ResetList(repository.getAllPersistables().getValue());
         viewModel.getModels().observe(this, new Observer<List<BucketListItem>>()
         {
             @Override
             public void onChanged(@Nullable List<BucketListItem> items)
             {
                 bucketItems = items;
+                dynamicItems.setList(items);
+                bucketListView.getAdapter().notifyDataSetChanged();
                 updateUI();
             }
         });
 
+        BucketListAdapter adapter = new BucketListAdapter(dynamicItems);
+        bucketListView.setAdapter(adapter);
     }
 
     private void updateUI()
