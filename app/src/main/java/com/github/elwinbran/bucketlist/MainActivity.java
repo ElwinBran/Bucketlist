@@ -1,7 +1,6 @@
 package com.github.elwinbran.bucketlist;
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModel;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
