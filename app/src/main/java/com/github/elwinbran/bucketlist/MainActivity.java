@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -41,7 +42,11 @@ public class MainActivity extends AppCompatActivity
         GenericRepository<BucketListItem> repository = new BucketListRepository(dao, databaseThread);
         GenericCRUDViewModel<BucketListItem> viewModel =
                 new MainViewModel(repository, repository.getAllPersistables());
+        //BucketListItem dingetjes =
+        //        new BucketListItem("Vliegen", "Een klein vliegtuigje mogen besturen.",false);
+        //repository.insert(dingetjes);
         final ResetList dynamicItems = new ResetList(repository.getAllPersistables().getValue());
+        Log.d("none", dynamicItems.get(0).getTitle());
         viewModel.getModels().observe(this, new Observer<List<BucketListItem>>()
         {
             @Override
