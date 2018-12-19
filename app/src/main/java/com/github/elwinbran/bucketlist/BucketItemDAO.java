@@ -1,5 +1,6 @@
 package com.github.elwinbran.bucketlist;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -16,7 +17,7 @@ import java.util.List;
 public interface BucketItemDAO
 {
     @Query("SELECT * FROM bucketListItem")
-    public List<BucketListItem> getAllEntries();
+    public LiveData<List<BucketListItem>> getAllEntries();
 
     @Insert
     public void insertEntry(BucketListItem entry);
