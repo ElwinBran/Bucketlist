@@ -20,12 +20,15 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity
 {
 
+    static AppDatabase db;
+
     private List<BucketListItem> bucketItems;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        db = AppDatabase.getInstance(this);
         setContentView(R.layout.activity_main);
         final RecyclerView bucketListView = findViewById(R.id.recycler_view_bucket_list);
         bucketListView.setLayoutManager(
