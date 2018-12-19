@@ -10,6 +10,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.List;
+import java.util.concurrent.Executor;
+import java.util.concurrent.Executors;
 
 /**
  * The entry point of the app.
@@ -36,10 +38,13 @@ public class MainActivity extends AppCompatActivity
         BucketListAdapter adapter = new BucketListAdapter(null);
         bucketListView.setAdapter(adapter);
 
+        Executor databaseThread = Executors.newSingleThreadExecutor();
+        BucketItemDAO dao = db.bucketItemDAO();
         FloatingActionButton addItemButton = findViewById(R.id.add_item_button);
-        GenericRepository<BucketListItem> repository = null;
-        GenericCRUDViewModel<BucketListItem> viewModel = null;
-        viewModel.getReminders().observe(this, new Observer<List<BucketListItem>>()
+        GenericRepository<BucketListItem> repository = new BucketListRepository(dao, databaseThread);
+        GenericCRUDViewModel<BucketListItem> viewModel =
+                new MainViewModel(repository, repository.getAllPersistables());
+        viewModel.getModels().observe(this, new Observer<List<BucketListItem>>()
         {
             @Override
             public void onChanged(@Nullable List<BucketListItem> items)
