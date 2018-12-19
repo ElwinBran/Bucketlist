@@ -71,6 +71,21 @@ public class BucketListItem implements Parcelable
         return this.completed;
     }
 
+    public void setTitle(String title)
+    {
+        this.title = title;
+    }
+
+    public void setDescription(String description)
+    {
+        this.description = description;
+    }
+
+    public void setCompleted(Boolean completed)
+    {
+        this.completed = completed;
+    }
+
     @Override
     public int describeContents()
     {
