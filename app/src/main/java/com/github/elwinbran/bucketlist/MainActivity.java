@@ -43,10 +43,11 @@ public class MainActivity extends AppCompatActivity
         GenericCRUDViewModel<BucketListItem> viewModel =
                 new MainViewModel(repository, repository.getAllPersistables());
         //BucketListItem dingetjes =
-        //        new BucketListItem("Vliegen", "Een klein vliegtuigje mogen besturen.",false);
+        //       new BucketListItem("Vliegen", "Een klein vliegtuigje mogen besturen.",false);
+        //viewModel.insert(dingetjes);
         //repository.insert(dingetjes);
         final ResetList dynamicItems = new ResetList(repository.getAllPersistables().getValue());
-        Log.d("none", dynamicItems.get(0).getTitle());
+        //Log.d("none", dao.getAllEntries().getValue().get(0).getTitle());
         viewModel.getModels().observe(this, new Observer<List<BucketListItem>>()
         {
             @Override
