@@ -27,9 +27,9 @@ public class BucketListAdapter extends RecyclerView.Adapter<ItemViewHolder>
     @Override
     public ItemViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i)
     {
-        View card = LayoutInflater.from(viewGroup.getContext()).inflate(
+        View item = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.bucket_list_item, viewGroup, false);
-        return new ItemViewHolder(card);
+        return new ItemViewHolder(item);
     }
 
     @Override
