@@ -3,6 +3,7 @@ package com.github.elwinbran.bucketlist;
 import android.support.annotation.NonNull;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
@@ -30,7 +31,14 @@ public class ResetList implements List<BucketListItem>
 
     public final void setList(@NonNull List<BucketListItem> currentWrappedList)
     {
-        this.currentWrappedList = currentWrappedList;
+        if(currentWrappedList == null)
+        {
+            this.currentWrappedList = Collections.EMPTY_LIST;
+        }
+        else
+        {
+            this.currentWrappedList = currentWrappedList;
+        }
     }
 
     @Override
