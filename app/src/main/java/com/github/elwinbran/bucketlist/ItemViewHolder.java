@@ -46,6 +46,11 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b)
             {
+                if(currentModel != null)
+                {
+                    currentModel.setCompleted(b);
+                    viewModel.update(currentModel);
+                }
                 updateState(b);
             }
         };
