@@ -1,6 +1,7 @@
 package com.github.elwinbran.bucketlist;
 
 import android.arch.lifecycle.Observer;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 
 import java.util.List;
 import java.util.concurrent.Executor;
@@ -42,7 +44,7 @@ public class MainActivity extends AppCompatActivity
         BucketItemDAO dao = db.bucketItemDAO();
         FloatingActionButton addItemButton = findViewById(R.id.add_item_button);
         GenericRepository<BucketListItem> repository = new BucketListRepository(dao, databaseThread);
-        GenericCRUDViewModel<BucketListItem> viewModel =
+        final GenericCRUDViewModel<BucketListItem> viewModel =
                 new MainViewModel(repository, repository.getAllPersistables());
         //BucketListItem dingetjes =
         //       new BucketListItem("Vliegen", "Een klein vliegtuigje mogen besturen.",false);
@@ -64,6 +66,14 @@ public class MainActivity extends AppCompatActivity
 
         BucketListAdapter adapter = new BucketListAdapter(dynamicItems, viewModel);
         bucketListView.setAdapter(adapter);
+        addItemButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent = new Intent(getApplicationContext(), AddActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void updateUI()
