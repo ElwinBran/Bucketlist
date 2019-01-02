@@ -8,13 +8,21 @@ import java.util.List;
 import java.util.ListIterator;
 
 /**
+ * A weird hacky list wrapper that lets you swap the wrapped list.
+ * Now this may just cause huge synchronization issues because it got exactly zero checks and tricks.
  *
  * @author Elwin Slokker
  */
 public class ResetList implements List<BucketListItem>
 {
+    /**
+     * The wrapped list that is currently the list that provides all behaviour.
+     */
     private List<BucketListItem> currentWrappedList;
 
+    /**
+     * @param currentWrappedList The initial list to be used.
+     */
     public ResetList(@NonNull List<BucketListItem> currentWrappedList)
     {
         setList(currentWrappedList);

@@ -5,6 +5,7 @@ import android.arch.lifecycle.LiveData;
 import java.util.List;
 
 /**
+ * The implementation of a view model for {@link BucketListItem}.
  *
  * @author Elwin Slokker
  */
