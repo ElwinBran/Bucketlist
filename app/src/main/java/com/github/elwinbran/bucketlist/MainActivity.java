@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity
                 new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
         Executor databaseThread = Executors.newSingleThreadExecutor();
+        //int total = db.query("SELECT * FROM bucketListItem", null).getCount();
+        //Log.d("none", Integer.toString(total));
         BucketItemDAO dao = db.bucketItemDAO();
         FloatingActionButton addItemButton = findViewById(R.id.add_item_button);
         GenericRepository<BucketListItem> repository = new BucketListRepository(dao, databaseThread);
@@ -47,7 +49,6 @@ public class MainActivity extends AppCompatActivity
         //viewModel.insert(dingetjes);
         //repository.insert(dingetjes);
         final ResetList dynamicItems = new ResetList(repository.getAllPersistables().getValue());
-        //Log.d("none", dao.getAllEntries().getValue().get(0).getTitle());
         viewModel.getModels().observe(this, new Observer<List<BucketListItem>>()
         {
             @Override
@@ -59,6 +60,7 @@ public class MainActivity extends AppCompatActivity
                 updateUI();
             }
         });
+        //Log.d("none", viewModel.getModels().getValue().get(0).getTitle());
 
         BucketListAdapter adapter = new BucketListAdapter(dynamicItems);
         bucketListView.setAdapter(adapter);
