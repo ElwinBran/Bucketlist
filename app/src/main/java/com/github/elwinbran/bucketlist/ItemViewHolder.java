@@ -12,19 +12,23 @@ import android.widget.TextView;
  */
 public class ItemViewHolder extends RecyclerView.ViewHolder
 {
-    final private View view;
+    final private CheckBox completionChecker;
+    final private TextView title;
+    final private TextView description;
 
     public ItemViewHolder(@NonNull View itemView)
     {
         super(itemView);
-        view = itemView;
+        completionChecker = itemView.findViewById(R.id.checkBox);
+        title = itemView.findViewById(R.id.text_view_item_title);
+        description = itemView.findViewById(R.id.text_view_item_description);
+        completionChecker.setOnCheckedChangeListener(statusChanged());
     }
 
     public void setItem(BucketListItem model)
     {
-        TextView title = itemView.findViewById(R.id.text_view_item_title);
-        TextView description = itemView.findViewById(R.id.text_view_item_description);
+        completionChecker.setChecked(model.getCompleted());
         title.setText(model.getTitle());
-        title.setText(model.getDescription());
+        description.setText(model.getDescription());
     }
 }
