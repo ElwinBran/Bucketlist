@@ -18,10 +18,13 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
     final private CheckBox completionChecker;
     final private TextView title;
     final private TextView description;
+    final private GenericCRUDViewModel<BucketListItem> viewModel;
+    private BucketListItem currentModel;
 
-    public ItemViewHolder(@NonNull View itemView)
+    public ItemViewHolder(@NonNull View itemView, GenericCRUDViewModel<BucketListItem> viewModel)
     {
         super(itemView);
+        this.viewModel = viewModel;
         completionChecker = itemView.findViewById(R.id.checkBox);
         title = itemView.findViewById(R.id.text_view_item_title);
         description = itemView.findViewById(R.id.text_view_item_description);
@@ -33,6 +36,7 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
         completionChecker.setChecked(model.getCompleted());
         title.setText(model.getTitle());
         description.setText(model.getDescription());
+        currentModel = model;
     }
 
     private final CompoundButton.OnCheckedChangeListener statusChanged()
@@ -49,7 +53,6 @@ public class ItemViewHolder extends RecyclerView.ViewHolder
 
     private void updateState(Boolean newCompletionValue)
     {
-        //TODO feedback to database
         if(newCompletionValue)
         {
             title.setPaintFlags(Paint.STRIKE_THRU_TEXT_FLAG);

@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity
         });
         //Log.d("none", viewModel.getModels().getValue().get(0).getTitle());
 
-        BucketListAdapter adapter = new BucketListAdapter(dynamicItems);
+        BucketListAdapter adapter = new BucketListAdapter(dynamicItems, viewModel);
         bucketListView.setAdapter(adapter);
     }
 

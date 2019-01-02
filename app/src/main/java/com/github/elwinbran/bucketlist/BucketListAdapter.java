@@ -17,10 +17,13 @@ public class BucketListAdapter extends RecyclerView.Adapter<ItemViewHolder>
 {
 
     final private List<BucketListItem> items;
+    final GenericCRUDViewModel<BucketListItem> viewModel;
 
-    public BucketListAdapter(@NonNull List<BucketListItem> items)
+    public BucketListAdapter(@NonNull List<BucketListItem> items,
+                             @NonNull GenericCRUDViewModel<BucketListItem> viewModel)
     {
         this.items = items;
+        this.viewModel = viewModel;
     }
 
     @NonNull
@@ -29,7 +32,7 @@ public class BucketListAdapter extends RecyclerView.Adapter<ItemViewHolder>
     {
         View item = LayoutInflater.from(viewGroup.getContext()).inflate(
                 R.layout.bucket_list_item, viewGroup, false);
-        return new ItemViewHolder(item);
+        return new ItemViewHolder(item, viewModel);
     }
 
     @Override
