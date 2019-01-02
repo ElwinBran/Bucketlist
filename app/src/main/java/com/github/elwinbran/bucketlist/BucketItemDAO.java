@@ -10,6 +10,7 @@ import android.arch.persistence.room.Update;
 import java.util.List;
 
 /**
+ * The DAO for {@link BucketListItem} entities in the ROOM database.
  *
  * @author Elwin Slokker
  */
